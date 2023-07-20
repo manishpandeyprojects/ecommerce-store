@@ -1,12 +1,12 @@
-import { BrowserRouter, Routes, Route, Link, } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Category from './components/Category/Category';
 import Newsletter from './components/Footer/Newsletter/Newsletter';
-import Product from './components/Products/Products';
 import SingleProduct from './components/SingleProduct/SingleProduct';
 import AppContext from './utils/context';
+import Error from "./components/Error/Error";
 
 function App() {
     return (
@@ -17,6 +17,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/category/:id" element={<Category />} />
                     <Route path="/product/:id" element={<SingleProduct />} />
+                    <Route path="/error" element={<Error />} />
                 </Routes>
                 <Newsletter />
                 <Footer />

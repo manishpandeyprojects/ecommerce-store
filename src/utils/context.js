@@ -10,6 +10,7 @@ const AppContext = ({ children }) => {
     const [cartCount, setCartCount] = useState(0);
     const [cartSubTotal, setCartSubTotal] = useState(0)
     const location = useLocation();
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -22,6 +23,7 @@ const AppContext = ({ children }) => {
         cartItems.map((item) => {
             subTotal += item.attributes.Price * item.attributes.quantity;
             count += item.attributes.quantity;
+            return count;
         });
         setCartSubTotal(subTotal);
         setCartCount(count);
@@ -42,7 +44,7 @@ const AppContext = ({ children }) => {
 
     const handleRemoveFromCart = (product) => {
         let items = [...cartItems];
-        items = items.filter(p => p.id != product.id);
+        items = items.filter(p => p.id !== product.id);
         setCartItems(items);
     }
     const handleCartProductQuantity = (type, product) => {
@@ -65,7 +67,9 @@ const AppContext = ({ children }) => {
         cartItems, setCartItems, cartCount, setCartCount, cartSubTotal, setCartSubTotal,
         handleAddToCart,
         handleRemoveFromCart,
-        handleCartProductQuantity
+        handleCartProductQuantity,
+        error,
+        setError
     }}> {children} </Context.Provider>
 };
 

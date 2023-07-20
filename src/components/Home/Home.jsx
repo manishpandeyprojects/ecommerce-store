@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { fetchDataFromApi } from "../../utils/api";
 import { Context } from "../../utils/context";
+import { useNavigate } from "react-router-dom";
 
 import "./Home.scss";
 
@@ -9,7 +10,8 @@ import Category from "./Category/Category";
 import Products from "../Products/Products";
 
 const Home = () => {
-  const { categories, setCategories, products, setProducts } =
+  const navigate = useNavigate();
+  const { categories, setCategories, products, setProducts, setError } =
     useContext(Context);
 
   useEffect(() => {
@@ -20,6 +22,12 @@ const Home = () => {
 
   const getCategories = () => {
     fetchDataFromApi("/api/categories?populate=*").then((res) => {
+      console.log(res.name);
+      if (res.name === "AxiosError") {
+        setError(true);
+        navigate("/error");
+        return;
+      }
       setCategories(res);
     });
   };
