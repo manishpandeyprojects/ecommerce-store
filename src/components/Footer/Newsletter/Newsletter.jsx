@@ -21,12 +21,17 @@ const Newsletter = () => {
     let email = event.target.value;
     let re =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // eslint-disable-line
-    if (re.test(email)) {
-      setErrorMsg(false);
+    if (email.length >= 1) {
+      if (re.test(email)) {
+        setErrorMsg(false);
+      } else {
+        setErrorMsg(true);
+      }
+      setEmail(email);
     } else {
-      setErrorMsg(true);
+      setErrorMsg(false);
+      setEmail("");
     }
-    setEmail(email);
   };
 
   const handleSubmit = () => {
@@ -48,8 +53,11 @@ const Newsletter = () => {
           }, 3000);
         }
       });
-    }else{
+    } else {
       setErrorMsg(true);
+      setTimeout(() => {
+        setErrorMsg(false);
+      }, 2000);
     }
   };
 

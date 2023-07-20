@@ -6,7 +6,7 @@ import { Context } from "../../../utils/context";
 const CartItem = () => {
   const {
     cartItems,
-    handleAddToCart,
+    // handleAddToCart,
     handleRemoveFromCart,
     handleCartProductQuantity,
   } = useContext(Context);

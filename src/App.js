@@ -7,6 +7,8 @@ import Newsletter from './components/Footer/Newsletter/Newsletter';
 import SingleProduct from './components/SingleProduct/SingleProduct';
 import AppContext from './utils/context';
 import Error from "./components/Error/Error";
+import About from "./components/About/About";
+import Shop from "./components/Shop/Shop";
 
 function App() {
     return (
@@ -18,6 +20,8 @@ function App() {
                     <Route path="/category/:id" element={<Category />} />
                     <Route path="/product/:id" element={<SingleProduct />} />
                     <Route path="/error" element={<Error />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/shop" element={<Shop />} />
                 </Routes>
                 <Newsletter />
                 <Footer />
